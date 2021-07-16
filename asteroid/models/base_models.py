@@ -213,12 +213,18 @@ class BaseEncoderMaskerDecoder(BaseModel):
         shape = jitable_shape(wav)
         # Reshape to (batch, n_mix, time)
         wav = _unsqueeze_to_3d(wav)
+        #print("-" * 80)
+        #print("wav", wav.size())
 
         # Real forward
         tf_rep = self.forward_encoder(wav)
+        #print("tf_rep", tf_rep.size())
         est_masks = self.forward_masker(tf_rep)
+        #print("est_masks", est_masks.size())
         masked_tf_rep = self.apply_masks(tf_rep, est_masks)
+        #print("masked_tf_rep", masked_tf_rep.size())
         decoded = self.forward_decoder(masked_tf_rep)
+        #print("decoded", decoded.size())
 
         reconstructed = pad_x_to_y(decoded, wav)
         return _shape_reconstructed(reconstructed, shape)

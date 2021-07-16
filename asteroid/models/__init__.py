@@ -9,6 +9,7 @@ from .dptnet import DPTNet
 from .lstm_tasnet import LSTMTasNet
 from .demask import DeMask
 from .x_umx import XUMX
+from .conv_tasnet_pretrain import ConvTasNetPretrain
 
 # Sharing-related
 from .publisher import save_publishable, upload_publishable
@@ -26,6 +27,7 @@ __all__ = [
     "XUMX",
     "save_publishable",
     "upload_publishable",
+    "ConvTasNetPretrain"
 ]
 
 
